@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cloneable Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #773afb;
+    --primary-hover: #6620fa;
+    --text-color: #333;
+    --light-text: #666;
+    --lighter-text: #777;
+    --border-color: #eaeaea;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: var(--text-color);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0;
+  }
+
+  .logo-img {
+    height: 64px;
+    width: auto;
+  }
+
+  .clone-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 16px 36px;
+    border-radius: 40px;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .clone-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 0 80px;
+  }
+
+  .section-title {
+    text-transform: uppercase;
+    font-size: 16px;
+    color: var(--primary-color);
+    letter-spacing: 1.2px;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .lead-text {
+    max-width: 700px;
+    margin: 30px auto;
+    font-size: 20px;
+    color: var(--light-text);
+  }
+
+  .email-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 9999px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .email-form input[type="email"] {
+    flex: 1;
+    padding: 20px 28px;
+    border: none;
+    font-size: 18px;
+    outline: none;
+  }
+
+  .subscribe-button {
+    padding: 14px 22px;
+    font-size: 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0;
+    transition: all 0.3s ease;
+  }
+
+  .subscribe-button:hover {
+    background-color: var(--primary-hover);
+  }
+
+  .info-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .check-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .info-text {
+    font-size: 16px;
+    color: var(--lighter-text);
+  }
+
+  .info-text a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .menu-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem 2rem;
+    margin-top: 40px;
+    max-width: 1800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 80px;
+  }
+
+  .menu-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a2e;
+  }
+
+  .menu-button {
+    background: #f7f1fc !important;
+    color: #8750fb !important;
+    border: none;
+    border-radius: 9999px;
+    padding: 14px 28px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: none !important;
+    font-weight: 600;
+  }
+
+  .menu-button:hover {
+    background: #eee0fb !important;
+  }
+
+  /* Стилі для секції ціноутворення */
+  .pricing-section {
+    padding: 100px 0;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  .pricing-header {
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .pricing-header .section-title {
+    color: #773afb;
+    font-size: 16px;
+    letter-spacing: 1.4px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .pricing-header h2 {
+    font-size: 40px;
+    margin: 0 0 20px;
+    color: #000;
+    font-weight: 700;
+  }
+
+  .pricing-header .lead-text {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0 auto;
+  }
+
+  .pricing-toggle {
+    display: inline-flex;
+    background: #f5f5f5;
+    border-radius: 8px;
+    padding: 4px;
+    margin: 30px 0;
+    position: relative;
+  }
+
+  .toggle-option {
+    padding: 8px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    color: #666;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .toggle-option.active {
+    color: #000;
+    font-weight: 600;
+  }
+
+  .toggle-indicator {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    width: calc(50% - 8px);
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    z-index: 1;
+  }
+
+  .toggle-option:nth-child(2).active ~ .toggle-indicator {
+    transform: translateX(100%);
+  }
+
+  .pricing-cards {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    margin-top: 50px;
+    flex-wrap: nowrap;
+  }
+
+  .pricing-card {
+    flex: 1;
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    min-width: 300px;
+    max-width: 350px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    text-align: left;
+    position: relative;
+  }
+
+  .pricing-card.featured {
+    background: #773afb;
+    border-color: #773afb;
+    color: white;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .pricing-card.featured .card-icon {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .card-title-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card.featured .card-category,
+  .pricing-card.featured .card-title,
+  .pricing-card.featured .card-description,
+  .pricing-card.featured .card-price,
+  .pricing-card.featured .price-period,
+  .pricing-card.featured .features-title,
+  .pricing-card.featured .feature-item {
+    color: white;
+  }
+
+  .pricing-card.featured .feature-icon {
+    color: white;
+    background-color: rgba(255,255,255,0.2);
+  }
+
+  .pricing-card.featured .card-button {
+    background: white;
+    color: #773afb;
+  }
+
+  .pricing-card.featured .card-button:hover {
+    background: #f0f0f0;
+  }
+
+  .card-category {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .card-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    color: #000;
+  }
+
+  .card-description {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    min-height: 60px;
+  }
+
+  .price-container {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+  }
+
+  .card-price {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 20px 0 5px;
+    color: #773afb;
+  }
+
+  .price-period {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+
+  .features-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 30px 0 15px;
+    color: #000;
+  }
+
+  .card-features {
+    margin-bottom: 30px;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #773afb;
+    color: white;
+    margin-right: 10px;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .card-button {
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 20px;
+    background: #773afb;
+    color: white;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+  }
+
+  .card-button:hover {
+    background: #6620fa;
+  }
+
+  @media (max-width: 1024px) {
+    .pricing-cards {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .pricing-card {
+      min-width: 280px;
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .top-bar { padding: 20px 0; }
+    .logo-img { height: 48px; }
+    h1 { font-size: 36px; }
+    .email-form {
+      flex-direction: column;
+      box-shadow: none;
+    }
+
+    .email-form input[type="email"],
+    .subscribe-button {
+      width: 100%;
+      border-radius: 9999px;
+    }
+
+    .subscribe-button {
+      margin-top: 10px;
+    }
+
+    .menu-card {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .pricing-header h2 {
+      font-size: 32px;
+    }
+  }
+
+  .currency-dropdown {
+    width: 160px;
+    margin: 0 auto;
+    position: relative;
+    user-select: none;
+    font-size: 16px;
+  }
+
+  .selected-option {
+    background: #f7f1fc;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  .flag-icon {
+    width: 24px;
+    height: 16px;
+    margin-right: 10px;
+    border-radius: 2px;
+    object-fit: cover;
+  }
+
+  .currency-options {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+
+  .currency-option {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .currency-option:hover {
+    background: #eee0fb;
+  }
+
+  .popular-badge {
+    background: white;
+    color: #773afb;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+
+  /* Calculator Slider Styles */
+  .calculator-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+  }
+
+  .slider-container {
+    margin: 40px 0;
+  }
+
+  .slider {
+    width: 100%;
+    height: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #eaeaea;
+    border-radius: 4px;
+    outline: none;
+    margin: 20px 0;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #773afb;
+    cursor: pointer;
+    border: none;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #773afb;
+    cursor: pointer;
+    border: none;
+  }
+
+  .slider-value {
+    font-size: 48px;
+    font-weight: 700;
+    color: #773afb;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .calculator-plan {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    background: #f7f1fc;
+  }
+
+  .calculator-plan-title {
+    font-weight: 600;
+  }
+
+  .calculator-plan-price {
+    font-weight: 700;
+    color: #773afb;
+  }
+
+  /* Typing Calculator Styles */
+  .typing-calculator {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+    text-align: left;
+  }
+
+  .typing-header {
+    margin-bottom: 30px;
+  }
+
+  .typing-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .typing-subtitle {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .user-input {
+    margin: 30px 0;
+  }
+
+  .user-question {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .user-count {
+    font-size: 24px;
+    font-weight: 700;
+    color: #773afb;
+    margin-bottom: 30px;
+  }
+
+  .typing-plans {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .typing-plan {
+    background: #f7f1fc;
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+  }
+
+  .typing-plan-category {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+
+  .typing-plan-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+
+  .typing-plan-description {
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .typing-plan-price {
+    font-size: 36px;
+    font-weight: 700;
+    color: #773afb;
+    margin: 20px 0 5px;
+  }
+
+  .typing-plan-period {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .typing-plan-features {
+    margin: 20px 0;
+  }
+
+  .typing-plan-features-title {
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .typing-plan-feature {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    color: #666;
+  }
+
+  .typing-feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #773afb;
+    color: white;
+    margin-right: 10px;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .typing-plan-button {
+    background: #773afb;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  .typing-plan-button:hover {
+    background: #6620fa;
+  }
+
+  .divider {
+    height: 1px;
+    background: #eaeaea;
+    margin: 40px 0;
+  }
+	.calculator-plan {
+  display: block !important;
+}
+.pricing-header h2 {
+  font-size: 40px;
+  margin: 0 0 20px;
+  color: #000;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.pricing-header .lead-text {
+  color: #666;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 700px;
+}
+.card-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.price-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 150px;
+}
+
+.features-container {
+  flex: 1;
+  max-width: 60%;
+}
+
+.card-button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 20px;
+  background: #773afb;
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+/* Для мобільних пристроїв */
+@media (max-width: 768px) {
+  .card-content-wrapper {
+    flex-direction: column;
+  }
+  
+  .features-container {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+}
+.pricing-cards .pricing-card:nth-child(1) .card-price,
+.pricing-cards .pricing-card:nth-child(3) .card-price {
+  color: black;
+}
+.card-price {
+  color: black
+}
+/* Горизонтальне вирівнювання лівого і правого блоку */
+
+.horizontal-layout .top-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.left-block {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+.right-block {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+
+/* Зовнішній вигляд ціни */
+.card-price {
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Список можливостей */
+.features-container {
+  background-color: #f9f9ff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  flex: 1;
+  max-width: 400px;
+}
+
+.feature-item {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #666;
+}
+
+.feature-icon {
+  color: #6c3ef6;
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+
+.feature-icon {
+  color: #6c3ef6;
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+/* Загальна ширина */
+.slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(to right, #6c3ef6 45%, #e0e0e0 45%);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 1rem;
+}
+
+/* Thumb (повзунок) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #6c3ef6;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #6c3ef6;
+  cursor: pointer;
+}
+
+/* Для зміни фону при русі (додається через JS) */
+.user-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.user-input-field {
+  width: 60px;
+  padding: 8px 10px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-weight: 500;
+  color: #333;
+  transition: border 0.2s ease;
+}
+
+.user-input-field:focus {
+  border-color: #7b61ff;
+}
+
+.user-label {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+
+/* 111 */
+ :root {
+    --primary-color: #773afb;
+    --primary-hover: #6620fa;
+    --text-color: #333;
+    --light-text: #666;
+    --lighter-text: #777;
+    --border-color: #eaeaea;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section {
+    margin: 80px 0;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin: 0 0 20px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin: 0 0 15px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0 0 20px;
+    color: var(--light-text);
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-left {
+    text-align: left;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .flex-container {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+    flex-wrap: wrap;
+  }
+
+  .flex-item {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .divider {
+    border-top: 1px solid var(--border-color);
+    padding: 30px 0;
+    margin: 60px 0;
+  }
+
+  .footer-logo {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .copyright {
+    font-size: 14px;
+    color: var(--light-text);
+  }
+
+  .email-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .email-form input[type="email"] {
+    flex: 1;
+    max-width: 300px;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .email-form button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+
+  .email-form button:hover {
+    background-color: var(--primary-hover);
+  }
+
+  .content-block {
+    padding: 40px;
+  }
+
+  .bottom-section {
+    display: flex;
+    align-items: flex-end;
+    gap: 60px;
+    margin-top: 40px;
+  }
+
+  .logo-screenshot {
+    width: 200px;
+    height: auto;
+  }
+
+  .form-container {
+    flex: 1;
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 36px;
+    }
+    
+    .flex-container {
+      gap: 40px;
+    }
+    
+    .email-form {
+      flex-direction: column;
+    }
+    
+    .email-form input[type="email"] {
+      max-width: 100%;
+    }
+    
+    .bottom-section {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .form-container {
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+
+</style>
+</head>
+<body>
+  <header class="container">
+    <div class="top-bar">
+      <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_tATZq2X1o9.png" alt="brix templates" class="logo-img">
+      <a href="#" class="clone-button">Clone now</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="main-content">
+      <div class="section-title">CLONEABLES FOR WEBFLOW</div>
+      <h1>Pricing tables Webflow<br>Cloneable Template</h1>
+      <p class="lead-text">Want to receive a monthly email in your inbox with awesome free Webflow cloneables, resources and more? Please submit your email below.</p>
+
+      <form class="email-form" action="#" method="POST">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit" class="subscribe-button">Subscribe</button>
+      </form>
+
+      <div class="info-box">
+        <div class="check-icon">✓</div>
+        <div class="info-text">
+          It's <a href="#">100% free</a> and we will never send more than one email per month
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-title">Pricing V1 – Toggle</div>
+        <button class="menu-button">Preview Cloneable</button>
+      </div>
+    </div>
+
+
+
+    <!-- Pricing V1 – Toggle -->
+    <section class="pricing-section">
+      <div class="container">
+        <div class="pricing-header">
+          <div class="section-title">PRICING</div>
+          <h2>Simple, transparent pricing.</h2>
+          <p class="lead-text">Lorem ipsum dolor sit amet consectetur adipiscing elit dolor posuere vel venenatis eu sit massa volutpat.</p>
+
+          <div class="pricing-toggle">
+            <div class="toggle-option active">Monthly</div>
+            <div class="toggle-option">Annually</div>
+            <div class="toggle-indicator"></div>
+          </div>
+        </div>
+
+        <div class="pricing-cards">
+          <div class="pricing-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_HAmK7Yrjcl.png" alt="Basic" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              </div>
+              <div class="card-title-container">
+                <div class="card-category">For individuals</div>
+                <div class="card-title">Basic</div>
+              </div>
+            </div>
+            <p class="card-description">Lorem ipsum dolor sit amet dolorell sitio! consectetur adipiscing elit.</p>
+            <div class="price-container">
+              <div class="card-price" data-base-price="99">$99</div>
+              <div class="price-period">/monthly</div>
+            </div>
+            
+            <div class="features-title">What's included</div>
+            <div class="card-features">
+              <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 250,000 tracked visits</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Normal support</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 3 team members</div>
+            </div>
+            <button class="card-button">Get started</button>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="card-header">
+              <div class="card-icon">
+                <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_9AKSxlsfj7.png" alt="Pro" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              </div>
+              <div class="card-title-container">
+                <div class="popular-badge">Popular</div>
+                <div class="card-category">For startups</div>
+                <div class="card-title">Pro</div>
+              </div>
+            </div>
+            <p class="card-description">Lorem ipsum dolor sit amet dolorell sitio! consectetur adipiscing elit.</p>
+            <div class="price-container">
+              <div class="card-price" data-base-price="199">$199</div>
+              <div class="price-period">/monthly</div>
+            </div>
+            
+            <div class="features-title">What's included</div>
+            <div class="card-features">
+              <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 1,000,000 tracked visits</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Premium support</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 10 team members</div>
+            </div>
+            <button class="card-button">Get started</button>
+          </div>
+
+          <div class="pricing-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_xkenYZnpot.png" alt="Enterprise" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              </div>
+              <div class="card-title-container">
+                <div class="card-category">For big companies</div>
+                <div class="card-title">Enterprise</div>
+              </div>
+            </div>
+            <p class="card-description">Lorem ipsum dolor sit amet dolorell sitio! consectetur adipiscing elit.</p>
+            <div class="price-container">
+              <div class="card-price" data-base-price="399">$399</div>
+              <div class="price-period">/monthly</div>
+            </div>
+            
+            <div class="features-title">What's included</div>
+            <div class="card-features">
+              <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 5,000,000 tracked visits</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Dedicated support</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 50 team members</div>
+            </div>
+            <button class="card-button">Get started</button>
+          </div>
+        </div>
+      </div>
+
+
+	<!-- Pricing V2 – Toggle -->
+
+      <div class="menu-card">
+        <div class="menu-title">Pricing V2 – Currency Dropdown</div>
+        <button class="menu-button">Preview Cloneable</button>
+      </div>
+    </div>
+
+    <section class="pricing-section">
+      <div class="container">
+        <div class="pricing-header">
+          <div class="section-title">PRICING</div>
+          <h2>Our pricing plans</h2>
+          <p class="lead-text">Lorem ipsum dolor sit amet consectetur adipiscing elit dolor posuere vel venenatis eu sit massa volutpat..</p>
+        </div>
+
+	 <footer style="text-align: center; padding: 40px 0;">
+      <label style="font-weight: 600;">Choose your currency</label>
+      <div class="currency-dropdown" style="margin-top: 10px;">
+        <div class="selected-option">
+          <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_Jg2n5Ry8yZ.png" alt="USD" class="flag-icon" />
+          <span>USD</span>
+        </div>
+        <div class="currency-options">
+          <div class="currency-option" data-currency="USD">
+            <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_Jg2n5Ry8yZ.png" alt="USD" class="flag-icon" />
+            <span>USD</span>
+          </div>
+          <div class="currency-option" data-currency="EUR">
+            <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_xO2tqgdS5A.png" alt="EUR" class="flag-icon" />
+            <span>EUR</span>
+          </div>
+          <div class="currency-option" data-currency="GBP">
+            <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_pnYLvVd42W.png" alt="GBP" class="flag-icon" />
+            <span>GBP</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+        <div class="pricing-cards">
+          <div class="pricing-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_HAmK7Yrjcl.png" alt="Basic" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              </div>
+              <div class="card-title-container">
+                <div class="card-category">For individuals</div>
+                <div class="card-title">Basic</div>
+              </div>
+            </div>
+            <p class="card-description">Lorem ipsum dolor sit amet dolorell sitio! consectetur adipiscing elit.</p>
+            <div class="price-container">
+              <div class="card-price" data-base-price="99">$99</div>
+              <div class="price-period">/monthly</div>
+            </div>
+            
+            <div class="features-title">What's included</div>
+            <div class="card-features">
+              <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 250,000 tracked visits</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Normal support</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 3 team members</div>
+            </div>
+            <button class="card-button">Get started</button>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="card-header">
+              <div class="card-icon">
+                <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_9AKSxlsfj7.png" alt="Pro" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              </div>
+              <div class="card-title-container">
+                <div class="popular-badge">Popular</div>
+                <div class="card-category">For startups</div>
+                <div class="card-title">Pro</div>
+              </div>
+            </div>
+            <p class="card-description">Lorem ipsum dolor sit amet dolorell sitio! consectetur adipiscing elit.</p>
+            <div class="price-container">
+              <div class="card-price" data-base-price="199">$199</div>
+              <div class="price-period">/monthly</div>
+            </div>
+            
+            <div class="features-title">What's included</div>
+            <div class="card-features">
+              <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 1,000,000 tracked visits</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Premium support</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 10 team members</div>
+            </div>
+            <button class="card-button">Get started</button>
+          </div>
+
+          <div class="pricing-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_xkenYZnpot.png" alt="Enterprise" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              </div>
+              <div class="card-title-container">
+                <div class="card-category">For big companies</div>
+                <div class="card-title">Enterprise</div>
+              </div>
+            </div>
+            <p class="card-description">Lorem ipsum dolor sit amet dolorell sitio! consectetur adipiscing elit.</p>
+            <div class="price-container">
+              <div class="card-price" data-base-price="399">$399</div>
+              <div class="price-period">/monthly</div>
+            </div>
+            
+            <div class="features-title">What's included</div>
+            <div class="card-features">
+              <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 5,000,000 tracked visits</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Dedicated support</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 50 team members</div>
+            </div>
+            <button class="card-button">Get started</button>
+          </div>
+        </div>
+      </div>
+    </section>
+ <div class="menu-card">
+
+
+	<!-- Pricing V3 – Toggle -->
+
+        <div class="menu-title">Pricing V3 – Calculator Slider</div>
+        <button class="menu-button">Preview Cloneable</button>
+      </div>
+    <section class="pricing-section">
+      <div class="container">
+        <div class="pricing-header">
+          <div class="section-title">PRICING</div>
+          <h2>Prising plans for all use cases</h2>
+          <p class="lead-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque ut id congue commodo. Semper malesuada morbi adipiscing tellus posuere. Interdum.</p>
+        </div>
+
+  <section class="pricing-section">
+  <div class="calculator-container">
+  <div class="slider-container">
+    <div class="slider-value">45</div>
+    <input type="range" min="1" max="100" value="45" class="slider" id="userSlider">
+  </div>
+
+ <div class="pricing-card horizontal-layout">
+  <div class="top-content">
+    
+    <!-- Ліва частина: Basic -->
+    <div class="left-block">
+      <div class="card-header">
+        <div class="card-icon">1</div>
+        <div class="card-title-container">
+          <div class="card-category">For Individuals</div>
+          <div class="card-title">Basic</div>
+        </div>
+      </div>
+      <p class="card-description">
+        Show social proof notifications to increase leads and sales.
+      </p>
+      <div class="price-container">
+        <div class="card-price" data-base-price="99">$99</div>
+        <div class="price-period">/monthly</div>
+      </div>
+      <button class="card-button">Get started</button>
+    </div>
+
+      <!-- Справа -->
+      <div class="right-block features-container">
+        <div class="features-title">What's included</div>
+        <div class="card-features">
+          <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+          <div class="feature-item"><span class="feature-icon">✓</span> Up to 250,000 tracked visits</div>
+          <div class="feature-item"><span class="feature-icon">✓</span> Normal support</div>
+          <div class="feature-item"><span class="feature-icon">✓</span> Up to 3 team members</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+
+
+
+	<div class="menu-card">
+        <div class="menu-title">Pricing V4 – Typing Calculator</div>
+        <button class="menu-button">Preview Cloneable</button>
+      </div>
+
+
+    <!-- Pricing V4 - Typing Calculator -->
+
+    <section class="pricing-section">
+      <div class="container">
+        <div class="pricing-header">
+          <div class="section-title">PRICING</div>
+          <h2>Affordable pricing plans</h2>
+          <p class="lead-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id ercu, convallis est sed. Proin nulla eu a vitae lectus leo suscipit.</p>
+        </div>
+
+        <div class="typing-calculator">
+          <div class="typing-header">
+            <div class="user-input">
+              <div class="user-question">How many users you have?</div>
+              <input type="number" class="user-input-field" value="10" min="1" />
+<span class="user-label">users</span>
+            </div>
+          </div>
+
+          <div class="pricing-cards">
+          <div class="pricing-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_HAmK7Yrjcl.png" alt="Basic" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              </div>
+              <div class="card-title-container">
+                <div class="card-category">For individuals</div>
+                <div class="card-title">Basic</div>
+              </div>
+            </div>
+            <p class="card-description">Lorem ipsum dolor sit amet dolorell sitio! consectetur adipiscing elit.</p>
+            <div class="price-container">
+              <div class="card-price" data-base-price="99">$99</div>
+              <div class="price-period">/monthly</div>
+            </div>
+            
+            <div class="features-title">What's included</div>
+            <div class="card-features">
+              <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 250,000 tracked visits</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Normal support</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 3 team members</div>
+            </div>
+            <button class="card-button">Get started</button>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="card-header">
+              <div class="card-icon">
+                <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_9AKSxlsfj7.png" alt="Pro" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              </div>
+              <div class="card-title-container">
+                <div class="popular-badge">Popular</div>
+                <div class="card-category">For startups</div>
+                <div class="card-title">Pro</div>
+              </div>
+            </div>
+            <p class="card-description">Lorem ipsum dolor sit amet dolorell sitio! consectetur adipiscing elit.</p>
+            <div class="price-container">
+              <div class="card-price" data-base-price="199">$199</div>
+              <div class="price-period">/monthly</div>
+            </div>
+            
+            <div class="features-title">What's included</div>
+            <div class="card-features">
+              <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 1,000,000 tracked visits</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Premium support</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 10 team members</div>
+            </div>
+            <button class="card-button">Get started</button>
+          </div>
+
+          <div class="pricing-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_xkenYZnpot.png" alt="Enterprise" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+              </div>
+              <div class="card-title-container">
+                <div class="card-category">For big companies</div>
+                <div class="card-title">Enterprise</div>
+              </div>
+            </div>
+            <p class="card-description">Lorem ipsum dolor sit amet dolorell sitio! consectetur adipiscing elit.</p>
+            <div class="price-container">
+              <div class="card-price" data-base-price="399">$399</div>
+              <div class="price-period">/monthly</div>
+            </div>
+            
+            <div class="features-title">What's included</div>
+            <div class="card-features">
+              <div class="feature-item"><span class="feature-icon">✓</span> All analytics features</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 5,000,000 tracked visits</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Dedicated support</div>
+              <div class="feature-item"><span class="feature-icon">✓</span> Up to 50 team members</div>
+            </div>
+            <button class="card-button">Get started</button>
+          </div>
+        </div>
+      </div>
+
+      </section>
+
+	<!-- New Section: brix templates -->
+
+ <section class="section">
+    <div class="flex-container">
+      <!-- Ліве фото (шаблони) -->
+      <div class="flex-item">
+        <div class="image-wrapper">
+          <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_IXGmJGUmLK.png" alt="Webflow Templates">
+        </div>
+      </div>
+      
+      <!-- Праве фото (просто зображення) -->
+      <div class="flex-item">
+        <div class="image-wrapper">
+          <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_vD6WGkDiK0.png" alt="Webflow Design">
+        </div>
+      </div>
+    </div>
+  </section>
+ <!-- Нижній блок з лого зліва та формою справа -->
+        <div class="bottom-section">
+          <!-- Скріншот з лого -->
+          <div>
+            <img src="C:\Users\Al6\OneDrive\Робочий стіл\My_Project\images\chrome_FyVkR9NzJR.png" class="logo-screenshot">
+          </div>
+          
+          <!-- Форма підписки -->
+          <div class="form-container">
+            <h2 class="text-left">Get a quote</h2>
+            <p class="text-left">
+              Subscribe to receive free Webflow cloneables every month.
+            </p>
+            <form class="email-form">
+              <input type="email" placeholder="Enter your email">
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+    </section>
+</div>  
+</main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Дані про ціни
+      const pricingData = {
+        monthly: [
+          { price: 99, period: '/monthly' },
+          { price: 199, period: '/monthly' },
+          { price: 399, period: '/monthly' },
+          { price: 99, period: '/monthly' },
+          { price: 199, period: '/monthly' },
+          { price: 399, period: '/monthly' }
+        ],
+        annually: [
+          { price: 900, period: '/yearly' },
+          { price: 1900, period: '/yearly' },
+          { price: 3900, period: '/yearly' },
+          { price: 900, period: '/yearly' },
+          { price: 1900, period: '/yearly' },
+          { price: 3900, period: '/yearly' }
+        ]
+      };
+
+      // Дані про валюти
+      const currencyData = {
+        USD: { symbol: "$", rate: 1 },
+        EUR: { symbol: "€", rate: 0.9 },
+        GBP: { symbol: "£", rate: 0.8 }
+      };
+	
+
+      // Елементи DOM
+      const options = document.querySelectorAll('.toggle-option');
+      const indicator = document.querySelector('.toggle-indicator');
+      const cards = document.querySelectorAll('.pricing-card');
+      const dropdown = document.querySelector('.currency-dropdown');
+      const selectedOption = dropdown.querySelector('.selected-option');
+      const currencyOptions = dropdown.querySelector('.currency-options');
+      const currencyItems = dropdown.querySelectorAll('.currency-option');
+      const typingPrices = document.querySelectorAll('.typing-plan-price');
+      const userSlider = document.getElementById('userSlider');
+      const sliderValue = document.querySelector('.slider-value');
+
+      // Функція оновлення цін
+      function updatePrices(plan, currency = 'USD') {
+        const currencyInfo = currencyData[currency];
+        
+        // Оновлення карток
+        pricingData[plan].forEach((data, i) => {
+          if (cards[i]) {
+            const priceElement = cards[i].querySelector('.card-price');
+            const periodElement = cards[i].querySelector('.price-period');
+            
+            const basePrice = parseFloat(priceElement.getAttribute('data-base-price'));
+            priceElement.textContent = `${currencyInfo.symbol}${Math.round(basePrice * currencyInfo.rate)}`;
+            periodElement.textContent = data.period;
+          }
+        });
+
+        // Оновлення typing calculator
+        typingPrices.forEach(priceElement => {
+          const basePrice = parseFloat(priceElement.getAttribute('data-base-price'));
+          priceElement.textContent = `${currencyInfo.symbol}${Math.round(basePrice * currencyInfo.rate)}`;
+        });
+      }
+
+      // Ініціалізація
+      updatePrices('monthly');
+      
+      // Обробники для перемикача Monthly/Annually
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          options.forEach(o => o.classList.remove('active'));
+          option.classList.add('active');
+
+          const plan = option.textContent.trim().toLowerCase();
+          const currentCurrency = document.querySelector('.selected-option span').textContent;
+          updatePrices(plan, currentCurrency);
+
+          if (indicator) {
+            indicator.style.transform = plan === 'monthly' ? 'translateX(0)' : 'translateX(100%)';
+          }
+        });
+      });
+
+      // Обробники для вибору валюти
+      selectedOption.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currencyOptions.style.display = currencyOptions.style.display === 'block' ? 'none' : 'block';
+      });
+
+      currencyItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const currency = item.getAttribute('data-currency');
+          const flagSrc = item.querySelector('img').src;
+          const currencyText = item.querySelector('span').textContent;
+          
+          selectedOption.innerHTML = `
+            <img src="${flagSrc}" alt="${currency}" class="flag-icon" />
+            <span>${currency}</span>
+          `;
+          
+          const activePlan = document.querySelector('.toggle-option.active') ? 
+            document.querySelector('.toggle-option.active').textContent.trim().toLowerCase() : 'monthly';
+          updatePrices(activePlan, currency);
+          
+          currencyOptions.style.display = 'none';
+        });
+      });
+
+      // Закриття dropdown при кліку поза нього
+      document.addEventListener('click', function() {
+        if (currencyOptions) {
+          currencyOptions.style.display = 'none';
+        }
+      });
+
+      // Обробник слайдера
+      if (userSlider) {
+        userSlider.addEventListener('input', function() {
+          sliderValue.textContent = this.value;
+        });
+      }
+    });
+  </script>
+	<script>
+  const slider = document.getElementById("userSlider");
+  const sliderValue = document.querySelector(".slider-value");
+
+  function updateSliderBackground(value) {
+    slider.style.background = `linear-gradient(to right, #6c3ef6 ${value}%, #e0e0e0 ${value}%)`;
+  }
+
+  slider.addEventListener("input", function() {
+    const value = this.value;
+    sliderValue.textContent = value;
+    updateSliderBackground(value);
+  });
+
+  // Початковий виклик
+  updateSliderBackground(slider.value);
+</script>
+
+</body>
+</html>
